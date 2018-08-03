@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<math.h>
+#include<iomanip>
 #define PI 3.14159265
 using namespace std;
 
@@ -59,9 +60,7 @@ void pascal(int n){
 	int r;
 	r = r%2;
 	for(int i = 0; i < n; i++){
-		for(int j = 0; j < n-i-1; j++){
-			cout << " ";
-		}
+		cout << setw(n-i);
 		for(int j = 0; j <= i; j++){
 			comb = factorial(i)/(factorial(j)*factorial(i-j));
 			if (comb%2 == 1)
@@ -93,7 +92,7 @@ main(){
 				}
 			case 3: {
 				int n = 0;
-				cout << "Ingrese la cantidad de filas";
+				cout << "Ingrese la cantidad de filas: ";
 				cin >> n;
 				pascal(n);
 				break;
