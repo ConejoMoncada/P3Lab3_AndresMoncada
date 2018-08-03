@@ -13,7 +13,7 @@ void factorizar(){
 	cout << "Ingrese el constante: ";
 	cin >> nums[2];
 	double f1 = 0, f2 = 0;//factor 1 y 2
-	if((nums[1] * nums[1] - 4*nums[0]*nums[2]) >= 0){
+	if((nums[1] * nums[1] - 4*nums[0]*nums[2]) >= 0 && nums[0] != 0){
 		f1 = -(-nums[1] + sqrt(nums[1] * nums[1] - 4*nums[0]*nums[2]))/(2*nums[0]);
 		f2 = -(-nums[1] - sqrt(nums[1] * nums[1] - 4*nums[0]*nums[2]))/(2*nums[0]);
 		cout <<"("<< nums[0] << ")X²+" <<"("<< nums[1] << ")X+" <<"("<< nums[2] << ") = (X";
@@ -54,28 +54,50 @@ void sincos(double deg){
 	cout << "Coseno: " << coseno << endl;
 }
 
-void fibonacci(int n){
-
+void pascal(int n){
+	long comb;
+	int r;
+	r = r%2;
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < n-i-1; j++){
+			cout << " ";
+		}
+		for(int j = 0; j <= i; j++){
+			comb = factorial(i)/(factorial(j)*factorial(i-j));
+			if (comb%2 == 1)
+				cout << "+";
+			else
+				cout << "-";
+			cout << " ";
+		}
+		cout << endl;
+	}
 }
 
 main(){
 	int op;
-	cout << "1. Factorizar" << endl << "2. Seno y Coseno" << endl << "3. Triángulo de Pascal" << endl << "0. Salir" << endl << "Ingrese una opción: ";
-	cin >> op;
-	switch(op){
-		case 1: {
-			factorizar();
-			}
-		case 2: {
-			cout << "Ingrese el ángulo: ";
-			double deg;
-			cin >> deg;
-			sincos(deg);
-			}
-		case 3: {
-			int n = 0;
-			cout << "Ingrese la cantidad de filas";
-			cin >> n;
-		        }
-	}
+	do{
+		cout << "1. Factorizar" << endl << "2. Seno y Coseno" << endl << "3. Triángulo de Pascal" << endl << "0. Salir" << endl << "Ingrese una opción: ";
+		cin >> op;
+		switch(op){
+			case 1: {
+				factorizar();
+				break;
+				}
+			case 2: {
+				cout << "Ingrese el ángulo: ";
+				double deg;
+				cin >> deg;
+				sincos(deg);
+				break;
+				}
+			case 3: {
+				int n = 0;
+				cout << "Ingrese la cantidad de filas";
+				cin >> n;
+				pascal(n);
+				break;
+		        	}
+		}
+	}while(op != 0);
 }
